@@ -1,9 +1,9 @@
-from unittest import case
+from fastapi import APIRouter, Query
+from models.recipe import RecipeResult, IngredientRequest
 
-from flask import Blueprint, request, jsonify, render_template
+router = APIRouter()
 
-recipes = Blueprint("recipes", __name__, url_prefix="/api/recipes")
-
+@router.get("/search", response_model=list[RecipeResult])
 
 @recipes.route("/search", methods=["GET"])
 def search_recipes():

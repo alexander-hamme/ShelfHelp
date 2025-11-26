@@ -1,9 +1,16 @@
-from flask import Blueprint, request, jsonify
-from werkzeug.utils import secure_filename
-import os
+from fastapi import APIRouter, File, UploadFile
+from src.models.ingredient import IngredientMatch
 
-images = Blueprint("images", __name__, url_prefix="/api/images")
+router = APIRouter()
 
+@router.post("/upload", response_model=list[IngredientMatch])
+async def upload_image(image: UploadFile = File(...)):
+    contents = await image.read()
+    # ML model inference
+    return await detect_ingredients(contents)
+
+
+'''
 @images.route("/upload", methods=["POST"])
 def upload_image():
     file = request.files.get("image")
@@ -17,4 +24,4 @@ def upload_image():
     # Call your ML model here later
     detections = detect_ingredients_from_image(saved_path)
 
-    return jsonify({"detections": detections})
+    return jsonify({"detections": detections})'''

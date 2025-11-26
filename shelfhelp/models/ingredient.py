@@ -1,0 +1,2 @@
+class IngredientMatch:
+    pass
