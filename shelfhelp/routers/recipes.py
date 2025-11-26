@@ -1,22 +1,35 @@
+import asyncio
+
 from fastapi import APIRouter, Query
-from models.recipe import RecipeResult, IngredientRequest
+from shelfhelp.models.recipe import RecipeResult, IngredientRequest
 
 router = APIRouter()
 
 @router.get("/search", response_model=list[RecipeResult])
-
-@recipes.route("/search", methods=["GET"])
-def search_recipes():
-    query = request.args.get("q", "")
-    search_mode = request.args.get("type", "title")  # default = title search
-
+async def search_recipes(
+    query: str = Query("", description="search phrase"),
+    mode: str = Query("title", regex="^(title|description|keywords|author|all)$")
+):
     # match mode:
     #     case "title":
     #         pass
     #     case "author":
     #         pass
-    results = search_recipe_db(query, search_mode)
+    return await search_recipe_db(query,  mode)
 
+
+async def search_recipe_db(query, search_mode):
+
+    # raise specific errors here and/or perform logic
+
+    await asyncio.sleep(1)
+
+    # This is the placeholder dictionary that is returned
+
+    return [
+        RecipeResult(title="Shit-Caked Ass", description="A blorious backshotted bubble bass bouncing in shit",
+                     author="Nigward Testicles", keywords=[])
+    ]
     # if search_mode not in MY_CLASS.SEARCH_MODES:
 
     if results is None:
@@ -24,19 +37,7 @@ def search_recipes():
 
     return jsonify({"results": results})
 
-@recipes.route("/recipe", methods=["GET"])
-def get_recipe():
-    recipe_id = request.args.get("id")
-    # TODO flask auto-input validation / type parsing ?
-    if recipe_id is None:
-        return jsonify({"error": "missing recipe id"}), 400
-    elif recipe_id not in recipes:
-        return jsonify({"error": "recipe id not found"}), 404
-    else:
-        return None # render_template("recipe") --> dynamically generated full page recipe view
 
-def search_recipe_db(query, search_mode):
-
-    # raise specific errors here and/or perform logic
-
-    return {}
+@router.post("/from-ingredients", response_model=list[RecipeResult])
+async def search_from_ingredients(req: IngredientRequest):
+    return await recipe_match_by_ingredients(req.ingredients)

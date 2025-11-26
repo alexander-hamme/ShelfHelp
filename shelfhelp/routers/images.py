@@ -1,5 +1,5 @@
 from fastapi import APIRouter, File, UploadFile
-from src.models.ingredient import IngredientMatch
+from shelfhelp.models.ingredient import IngredientMatch
 
 router = APIRouter()
 
