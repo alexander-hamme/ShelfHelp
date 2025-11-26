@@ -1,0 +1,84 @@
+body {
+	background-color: #f9f9f9;
+}
+
+.searchDiv {
+	display: inline-block;
+	border: 2px dashed #212121;
+	border-radius: 10px;
+    padding: 20px;
+}
+
+.shelfhelpDiv {
+	margin-top: 30px; 
+	margin-bottom: 30px; 
+	display: inline-block;
+	border: 2px dashed #212121;
+	border-radius: 10px;
+    padding: 20px 50px 20px 50px;
+
+    visibility: hidden;
+}
+
+.titleHeader {
+	font-size: 96px;
+	color: #212121;
+	text-align: center;
+	font-family: 'Amatic SC', cursive;
+}
+
+.searchHeader {
+	font-size: 24px;
+	color: #212121;
+	text-align: center;
+	font-family: 'Comfortaa', cursive;
+	font-weight: 400;
+}
+
+.searchHeader > b {
+	font-family: 'Comfortaa', cursive;
+	font-weight: 700;
+}
+
+.title-Lyrics-Artist {
+	font-size: 56px;
+	color: #212121;
+	font-family: 'Comfortaa', cursive;
+	font-weight: 700;
+}
+
+.title-Lyrics-Music {
+	font-size: 36px;
+	color: #212121;
+	font-family: 'Comfortaa', cursive;
+	font-weight: 400;
+}
+
+.error {
+	font-size: 12px;
+	color: red;
+	text-align: center;
+	font-family: 'Comfortaa', cursive;
+}
+
+.lyrics {
+	font-size: 14px;
+	color: #212121;
+	text-align: center;
+	font-family: 'Comfortaa', cursive;
+}
+
+#artistMusic {
+	width: 500px;
+	height: 40px;
+	display: inline-block;
+
+	border: 1px solid #212121;
+	border-radius: 5px;
+
+	font-size: 16px;
+	color: #212121;
+	text-align: center;
+	font-family: 'Comfortaa', cursive;
+	margin: 10px 0px 10px 0px;
+}
